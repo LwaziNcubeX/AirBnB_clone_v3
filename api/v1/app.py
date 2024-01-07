@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+"""Add status API endpoint"""
 import os
 from flask import Flask
 from models import storage
