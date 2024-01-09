@@ -86,16 +86,4 @@ class DBStorage:
         Returns the number of objects in storage
         or count if no class is provided.
         """
-        count = 0
-
-        with self.__session() as session:
-            try:
-                if cls is not None:
-                    count = session.query(cls).count()
-                else:
-                    count = len(self.all())
-            except Exception as e:
-                # Handle specific exceptions or log the error
-                print(f"Error in count method: {e}")
-
-        return count
+        return len(models.storage.all(cls))
