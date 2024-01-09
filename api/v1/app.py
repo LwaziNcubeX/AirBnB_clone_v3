@@ -4,7 +4,7 @@ Add Blueprint to Flask app and tick
 threaded as true
 """
 import os
-from flask import Flask
+from flask import Flask, jsonify
 from models import storage
 from api.v1.views import app_views
 
@@ -20,6 +20,12 @@ def close_storage(exception):
     closes the storage when the application context is torn down.
     """
     storage.close()
+
+
+@app.errorhandler(404)
+def error_404(error):
+    """create a custom error handler for the 404"""
+    return jsonify({"error": "Not found"}), 404
 
 
 if __name__ == "__main__":
